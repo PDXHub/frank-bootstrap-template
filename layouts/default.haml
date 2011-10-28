@@ -1,9 +1,40 @@
-!!! Strict
-%html
+!!!
+%html{:lang => "en"}
   %head
-    %title Frank's on the scene.
-    %link{:rel=>'stylesheet', :type=>'text/css', :href=>'/css/frank.css'}
-    %script{:type=>'text/javascript', :src=>'/js/frank.js'}
+    %meta{:charset => "utf-8"}
+      = refresh
+      %title
+        #{title||=''}
+      %meta{:content => "", :name => "description"}
+      %meta{:content => "", :name => "author"}
+      / Le HTML5 shim, for IE6-8 support of HTML elements
+      /[if lt IE 9]
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+      // Use clientside or commandline less, since less gem has several issues
+      - if Frank.exporting?
+        %link{:charset => "utf-8", :href => "/css/site.css", :rel => "stylesheet", :type => "text/css"}
+      - else
+        %link{:charset => "utf-8", :href => "/less/site.less", :rel => "stylesheet/less", :type => "text/css"}
+        %script{:type => "text/javascript", :src => "/js/less.js"}
+
+      / Le fav and touch icons
+      %link{:href => "images/favicon.ico", :rel => "shortcut icon"}
+      %link{:href => "images/apple-touch-icon.png", :rel => "apple-touch-icon"}
+      %link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}
+      %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}
+
+      = content_for :head
   %body
-    #wrapper
+    .topbar
+      .fill
+        .container
+          %a.brand{:href => "#"} Project name
+          %ul.nav
+            - {'/' => 'Home', '/' =>'Hero' }.each do |path, label|
+              <li #{current_path == path ? 'class="active"' : ''}>
+              %a{:href => path}= label
+    .container
       = yield
+      %footer
+        %p © Company 2011

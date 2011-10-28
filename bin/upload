@@ -1,0 +1,7 @@
+#!/bin/sh
+SDIR=`dirname "$0"`
+REMOTE=eric@ankh.pdxhub.org:/var/www/cloudfeet.pdxhub.org/
+
+source ${SDIR}/build
+
+rsync -vaz --delete build/ $REMOTE

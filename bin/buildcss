@@ -1,0 +1,6 @@
+#!/bin/sh
+BASE=$PWD
+
+cd static/less
+  lessc cloudfeet.less > $BASE/static/css/cloudfeet.css
+cd $BASE

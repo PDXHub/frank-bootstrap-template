@@ -1,0 +1,8 @@
+#!/bin/sh
+
+BASE=$PWD
+SDIR=`dirname "$0"`
+
+rm -rf $BASE/build
+source ${SDIR}/buildcss
+frank export --production build
