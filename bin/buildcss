@@ -2,5 +2,5 @@
 BASE=$PWD
 
 cd static/less
-  lessc cloudfeet.less > $BASE/static/css/cloudfeet.css
+  lessc site.less > $BASE/static/css/site.css
 cd $BASE
